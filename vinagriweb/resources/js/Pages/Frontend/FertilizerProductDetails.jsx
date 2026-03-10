@@ -128,11 +128,6 @@ export default function FertilizerProductDetails({ id }) {
               <h3 className="description-title">Description</h3>
               <p className="product-description">{product.description}</p>
             </div>
-
-            <div className="action-buttons">
-              <button className="add-to-cart-btn">Add to Cart</button>
-              <button className="buy-now-btn">Buy Now</button>
-            </div>
           </div>
         </div>
       </div>
