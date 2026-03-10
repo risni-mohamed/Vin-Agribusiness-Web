@@ -1,0 +1,279 @@
+/* ===== Container ===== */
+.fertilizer-container {
+  margin-left: 250px;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background: #f9faf8;
+}
+
+.fertilizer-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #1b6533;
+}
+
+/* ===== Table Wrapper ===== */
+.fertilizer-table-wrapper {
+  overflow-x: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* ===== Table ===== */
+.fertilizer-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fertilizer-table th,
+.fertilizer-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.fertilizer-table th {
+  background: #1b6533;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.fertilizer-table tr.even {
+  background-color: #fafafa;
+}
+
+.fertilizer-table tr.odd {
+  background-color: #ffffff;
+}
+
+.fertilizer-table tr:hover {
+  background-color: #eef7d3;
+}
+
+/* ===== Image Preview ===== */
+.fertilizer-preview {
+  width: 120px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.no-file {
+  color: #999;
+  font-size: 13px;
+}
+
+/* ===== Description Cell ===== */
+.description-cell {
+  max-width: 250px;
+  white-space: normal; /* allow wrapping */
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+/* ===== Badges ===== */
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge.straight {
+  background: #eaf5e6;
+  color: #1b6533;
+}
+
+.badge.granular {
+  background: #f1f8e9;
+  color: #99c025;
+}
+
+.badge.liquid {
+  background: #e0f7fa;
+  color: #006064;
+}
+
+.badge.mixtures {
+  background: #fff7e6;
+  color: #ef6c00;
+}
+
+.badge.growth {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+/* ===== Buttons ===== */
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  min-width: 160px;
+}
+
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 2px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn.edit {
+  background: #99c025;
+  color: white;
+}
+
+.btn.edit:hover {
+  background: #85a81f;
+}
+
+.btn.delete {
+  background: #e53935;
+  color: white;
+}
+
+.btn.delete:hover {
+  background: #c62828;
+}
+
+.btn.save {
+  background: #1b6533;
+  color: white;
+}
+
+.btn.save:hover {
+  background: #155127;
+}
+
+.btn.cancel {
+  background: gray;
+  color: white;
+}
+
+.btn.cancel:hover {
+  background: #555;
+}
+
+/* ===== Modal Overlay ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ===== Modal Content ===== */
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 700px;
+   max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  border-top: 5px solid #99c025;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* ===== Close Button ===== */
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #999;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+/* ===== Form Styling ===== */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-form input,
+.edit-form select,
+.edit-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.edit-form input:focus,
+.edit-form select:focus,
+.edit-form textarea:focus {
+  border-color: #007bff;
+}
+
+.edit-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Quantity + Unit Row */
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row input {
+  flex: 2;
+}
+
+.form-row select {
+  flex: 1;
+}
+
+/* Image Preview */
+.preview-edit {
+  width: 200px;
+  margin-top: 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}

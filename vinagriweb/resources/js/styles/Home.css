@@ -1,0 +1,47 @@
+/* Home page general layout */
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ebefe5; /* light gray background */
+  color: #333; /* dark text */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.home-main {
+  flex: 1;
+}
+
+/* section wrapper */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ===== Tablets & Small Screens ===== */
+@media (max-width: 768px) {
+  .section {
+    padding: 30px 15px;
+  }
+
+  .home-container {
+    font-size: 0.95rem; /* slightly smaller text */
+  }
+}
+
+/* ===== Mobile Phones ===== */
+@media (max-width: 480px) {
+  .section {
+    padding: 20px 10px;
+  }
+
+  .home-container {
+    font-size: 0.9rem;
+  }
+
+  .home-main {
+    padding: 0 5px; /* avoid horizontal overflow */
+  }
+}
+

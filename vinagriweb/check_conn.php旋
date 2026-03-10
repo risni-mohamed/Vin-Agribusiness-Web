@@ -1,0 +1,19 @@
+<?php
+try {
+    $pdo = new PDO("mysql:host=127.0.0.1;port=3306", "root", "");
+    echo "Connection to MySQL successful!\n";
+    
+    $stmt = $pdo->query("SHOW DATABASES LIKE 'vinagro'");
+    if ($stmt->fetch()) {
+        echo "Database 'vinagro' exists.\n";
+        
+        $pdo->exec("USE vinagro");
+        $stmt = $pdo->query("SHOW TABLES");
+        $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        echo "Tables in 'vinagro': " . implode(", ", $tables) . "\n";
+    } else {
+        echo "Database 'vinagro' NOT FOUND.\n";
+    }
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage() . "\n";
+}
