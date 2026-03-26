@@ -1,30 +1,27 @@
 // src/components/FertilizerWelcome.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "@inertiajs/react";
 import "../../styles/FertilizerWelcome.css";
 
-// ✅ Import all images and flyers properly
+// ✅ Import static welcome image only
 import welcomeImg from "../../assets/root1.jpg";
-import peraImg from "../../assets/pera.jpg";
-import peraFlyer from "../../assets/pera-flyer.jpg";
-import bananaImg from "../../assets/banana.png";
-import bananaFlyer from "../../assets/banana-flyer.jpg";
-import papayaImg from "../../assets/papaya.jpg";
-import papayaFlyer from "../../assets/papaya-flyer.jpg";
-import chilliImg from "../../assets/chilli.jpg";
-import chilliFlyer from "../../assets/chilli-flyer.jpg";
-import fchilliImg from "../../assets/fchilli.jpeg";
-import fchilliFlyer from "../../assets/fchilli-flyer.jpg";
-import gourdImg from "../../assets/gourd.jpeg";
-import gourdFlyer from "../../assets/gourd-flyer.jpg";
 
 // React Icons
 import { FaLeaf, FaAward, FaDownload } from "react-icons/fa";
-import { GiFarmTractor } from "react-icons/gi";
+import { GiFarmTractor, GiPlantSeed } from "react-icons/gi";
 import { MdOutlineTrendingUp } from "react-icons/md";
 
 export default function FertilizerWelcome() {
   const [selectedCrop, setSelectedCrop] = useState(null);
+  const [crops, setCrops] = useState([]);
+
+  // Fetch crop programs from the API
+  useEffect(() => {
+    axios.get("/api/crop-programs")
+      .then(res => setCrops(res.data))
+      .catch(err => console.error("Failed to load crop programs:", err));
+  }, []);
 
   const handleDownload = async (url, name) => {
     try {
@@ -33,7 +30,7 @@ export default function FertilizerWelcome() {
       const blobUrl = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = blobUrl;
-      link.download = `${name}-Flyer.jpg`;
+      link.download = `${name}-Flyer`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -43,16 +40,6 @@ export default function FertilizerWelcome() {
       window.open(url, "_blank");
     }
   };
-
-  // ✅ Use imported variables
-  const crops = [
-    { name: "පේර", img: peraImg, flyer: peraFlyer },
-    { name: "කෙසෙල්", img: bananaImg, flyer: bananaFlyer },
-    { name: "පැපොල්", img: papayaImg, flyer: papayaFlyer },
-    { name: "මිරිස්", img: chilliImg, flyer: chilliFlyer },
-    { name: "මාළු මිරිස්", img: fchilliImg, flyer: fchilliFlyer },
-    { name: "මැහි බෝග", img: gourdImg, flyer: gourdFlyer },
-  ];
 
   return (
     <section className="vinfert-welcome" aria-labelledby="vinfert-heading">
@@ -144,28 +131,33 @@ export default function FertilizerWelcome() {
       </div>
 
       {/* Crop Program Section */}
-      <div className="vinfert-crop-section fade-in-up delay-6">
-        <div className="vinfert-container">
-          <h2 className="vinfert-crop-title">
-            Our Crop<br /> Program
-          </h2>
+      {crops.length > 0 && (
+        <div className="vinfert-crop-section fade-in-up delay-6">
+          <div className="vinfert-container">
+            <h2 className="vinfert-crop-title">
+              Our Crop<br /> Program
+            </h2>
 
-          <div className="vinfert-crop-grid">
-            {crops.map((crop, index) => (
-              <div
-                key={index}
-                className="vinfert-crop-item"
-                onClick={() => setSelectedCrop(crop)}
-              >
-                <div className="vinfert-crop-circle">
-                  <img src={crop.img} alt={crop.name} />
+            <div className="vinfert-crop-grid">
+              {crops.map((crop) => (
+                <div
+                  key={crop.id}
+                  className="vinfert-crop-item"
+                  onClick={() => setSelectedCrop(crop)}
+                >
+                  <div className="vinfert-crop-circle">
+                    {crop.image
+                      ? <img src={crop.image} alt={crop.name} />
+                      : <GiPlantSeed size={48} style={{ color: "#3a7d44" }} />
+                    }
+                  </div>
+                  <p className="vinfert-crop-label">{crop.name.toUpperCase()}</p>
                 </div>
-                <p className="vinfert-crop-label">{crop.name.toUpperCase()}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Modal Popup */}
       {selectedCrop && (
@@ -180,18 +172,22 @@ export default function FertilizerWelcome() {
             >
               ×
             </button>
-            <img src={selectedCrop.flyer} alt={`${selectedCrop.name} flyer`} />
+            {selectedCrop.flyer
+              ? <img src={selectedCrop.flyer} alt={`${selectedCrop.name} flyer`} />
+              : <p style={{ textAlign: "center", padding: "2rem", color: "#6b7280" }}>No flyer available.</p>
+            }
             <h3>{selectedCrop.name}</h3>
-            <button
-              onClick={() => handleDownload(selectedCrop.flyer, selectedCrop.name)}
-              className="vinfert-download-btn"
-            >
-              <FaDownload className="vinfert-download-icon" /> Download Flyer
-            </button>
+            {selectedCrop.flyer && (
+              <button
+                onClick={() => handleDownload(selectedCrop.flyer, selectedCrop.name)}
+                className="vinfert-download-btn"
+              >
+                <FaDownload className="vinfert-download-icon" /> Download Flyer
+              </button>
+            )}
           </div>
         </div>
       )}
     </section>
   );
 }
-

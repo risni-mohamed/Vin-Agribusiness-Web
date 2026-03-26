@@ -90,6 +90,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/view-feedbacks', function () {
             return Inertia::render('Admin/ViewFeedbacks');
         });
+
+        Route::get('/crop-programs', function () {
+            return Inertia::render('Admin/CropPrograms');
+        });
     });
 });
 

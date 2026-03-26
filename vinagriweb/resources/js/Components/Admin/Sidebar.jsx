@@ -9,6 +9,7 @@ import {
     FaPhotoVideo,
     FaCommentAlt
 } from "react-icons/fa";
+import { GiPlantSeed } from "react-icons/gi";
 import "../../styles/Admin/Sidebar.css";
 
 export default function Sidebar() {
@@ -82,6 +83,11 @@ export default function Sidebar() {
                 {/* Feedbacks */}
                 <Link href="/admin/view-feedbacks" className={`nav-item ${isActive("/admin/view-feedbacks") ? "active" : ""}`}>
                     <FaCommentAlt className="nav-icon" /> Feedbacks
+                </Link>
+
+                {/* Crop Programs */}
+                <Link href="/admin/crop-programs" className={`nav-item ${isActive("/admin/crop-programs") ? "active" : ""}`}>
+                    <GiPlantSeed className="nav-icon" /> Crop Programs
                 </Link>
 
                 {/* Dealership Agreement Form Button */}

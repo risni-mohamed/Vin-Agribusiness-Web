@@ -1,0 +1,276 @@
+/* ── Crop Programs Admin Page ── */
+
+.cp-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Header */
+.cp-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.cp-header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cp-header-icon {
+    font-size: 2.5rem;
+    color: #3a7d44;
+    flex-shrink: 0;
+}
+
+.cp-header-left h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.2rem 0;
+}
+
+.cp-header-left p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.cp-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #3a7d44, #52a65f);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+}
+.cp-add-btn:hover { opacity: 0.88; }
+
+/* States */
+.cp-loading,
+.cp-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #9ca3af;
+    font-size: 1rem;
+}
+.cp-empty-icon { color: #d1d5db; margin-bottom: 1rem; }
+.cp-empty p { margin: 0; }
+
+/* Card Grid */
+.cp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.cp-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.cp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.11);
+}
+
+.cp-card-thumb {
+    height: 140px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.cp-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cp-thumb-placeholder { color: #d1d5db; }
+
+.cp-card-body {
+    flex: 1;
+    padding: 0.9rem 1rem 0.5rem;
+}
+.cp-card-body h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+}
+.cp-card-meta {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin: 0 0 0.4rem 0;
+}
+.cp-flyer-link {
+    font-size: 0.78rem;
+    color: #3a7d44;
+    text-decoration: underline;
+}
+
+.cp-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem 0.75rem;
+}
+
+.cp-btn-edit,
+.cp-btn-delete,
+.cp-btn-confirm,
+.cp-btn-cancel {
+    border: none;
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: opacity 0.2s;
+}
+.cp-btn-edit    { background: #e0f2e9; color: #3a7d44; }
+.cp-btn-delete  { background: #fee2e2; color: #ef4444; }
+.cp-btn-confirm { background: #ef4444; color: #fff; }
+.cp-btn-cancel  { background: #e5e7eb; color: #374151; }
+.cp-btn-edit:hover, .cp-btn-delete:hover,
+.cp-btn-confirm:hover, .cp-btn-cancel:hover { opacity: 0.8; }
+
+.cp-confirm-row { display: flex; gap: 0.35rem; }
+
+/* ── Modal ── */
+.cp-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.cp-modal {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.cp-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+.cp-modal-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+.cp-modal-close {
+    background: #f3f4f6;
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #6b7280;
+}
+.cp-modal-close:hover { background: #e5e7eb; }
+
+/* Form */
+.cp-form {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.cp-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.cp-form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #374151;
+}
+.cp-form-group input[type="text"],
+.cp-form-group input[type="number"] {
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.9rem;
+    color: #111827;
+    transition: border-color 0.2s;
+    outline: none;
+}
+.cp-form-group input:focus { border-color: #3a7d44; }
+
+.cp-upload-box {
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #9ca3af;
+    font-size: 0.82rem;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+.cp-upload-box:hover { border-color: #3a7d44; color: #3a7d44; }
+.cp-upload-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cp-flyer-set {
+    font-size: 0.85rem;
+    color: #3a7d44;
+    font-weight: 600;
+}
+
+.cp-submit-btn {
+    background: linear-gradient(135deg, #3a7d44, #52a65f);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.cp-submit-btn:hover { opacity: 0.88; }
+.cp-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
