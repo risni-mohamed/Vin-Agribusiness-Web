@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2026 at 06:44 AM
+-- Generation Time: Mar 27, 2026 at 06:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `vinagro`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `crop_programs`
+--
+
+CREATE TABLE `crop_programs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `flyer` varchar(255) DEFAULT NULL,
+  `sort_order` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `crop_programs`
+--
+
+INSERT INTO `crop_programs` (`id`, `name`, `image`, `flyer`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, 'පේර | Guava', 'crop-programs/images/0P4AiBnUDxpSS9C2FQBw52Jf17agqXKiyMYgrVrS.png', 'crop-programs/flyers/HddoYOHEOpHi6FXxKml8nzwi6op5Rmjc2JaSnAcN.jpg', 0, '2026-03-26 01:26:26', '2026-03-26 01:31:58'),
+(2, 'කෙසෙල් | Banana', 'crop-programs/images/I6egZPTr8FFnB3jqc3NbDHndMam5zIEnTRgyWrEm.webp', 'crop-programs/flyers/ZfaZ5ba2NYvQLzzk3vanpbjKNP3RHGh99HLYueFm.jpg', 1, '2026-03-26 01:31:16', '2026-03-26 01:31:16'),
+(3, 'පැපොල් | Papaya', 'crop-programs/images/InZcvPvmD0QA6b7l8WPCIWj2V9zI1GhU0HXO8o2E.jpg', 'crop-programs/flyers/FKuLwDKQK1X3dX4qxF2bGbGgfDHnXEWNQ2XoXRml.jpg', 2, '2026-03-26 01:34:37', '2026-03-26 01:34:37'),
+(4, 'මිරිස් | Chilli', 'crop-programs/images/3jGqMhmJ34oMGIClqFWOadIBAdkRokMwoI0k9F1s.jpg', 'crop-programs/flyers/9HYhZ6R3Y3XI68hhkqASzw88C9aowFapgv8hRXwW.jpg', 3, '2026-03-26 01:36:51', '2026-03-26 01:36:51'),
+(5, 'මාළු මිරිස් | Capsicum', 'crop-programs/images/f2rsfmQT8nR69XShptd4pg5hnVNQwMsN395V1wyE.jpg', 'crop-programs/flyers/I0dpHW8zoIjyKQJh1xs6ugAzDNIqJmN5B5j7HAp7.jpg', 4, '2026-03-26 01:38:54', '2026-03-26 01:38:54'),
+(6, 'මැහි බෝග | Bitter Gourd', 'crop-programs/images/pOXa3Vp2Y1JmAwpTjis6OL1zmNNZBLfRKNWJIZxH.jpg', 'crop-programs/flyers/fSfyMUQ2MxLpQeQrvbFb4i481yVW3YMBwjIAlL0d.jpg', 5, '2026-03-26 01:44:30', '2026-03-26 01:44:30');
 
 -- --------------------------------------------------------
 
@@ -123,11 +151,18 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2026_03_09_073551_create_personal_access_tokens_table', 1),
 (8, '2026_03_09_999999_create_feedbacks_table', 2),
 (9, '2026_03_09_999999_rename_feedbacks_table', 3),
-(10, '2026_03_10_999999_add_is_visible_to_feedback_table', 4);
+(10, '2026_03_10_999999_add_is_visible_to_feedback_table', 4),
+(11, '2026_03_26_000001_create_crop_programs_table', 5);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `crop_programs`
+--
+ALTER TABLE `crop_programs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `feedback`
@@ -158,6 +193,12 @@ ALTER TABLE `migrations`
 --
 
 --
+-- AUTO_INCREMENT for table `crop_programs`
+--
+ALTER TABLE `crop_programs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
@@ -179,7 +220,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
